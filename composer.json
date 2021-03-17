@@ -1,0 +1,50 @@
+{
+    "name": "vanilo/stripe",
+    "description": "Stripe Payment Gateway Support for Vanilo (Laravel)",
+    "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Attila Fulop",
+            "homepage": "https://github.com/fulopattila122"
+        },
+        {
+            "name": "Hunor Kedves",
+            "homepage": "https://github.com/kedves"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/vanilophp/paypal"
+    },
+    "require": {
+        "php": "^7.4|^8.0",
+        "konekt/concord": "^1.5",
+        "vanilo/payment": "^2.1",
+        "vanilo/contracts": "^2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vanilo\\Stripe\\": "src"
+        }
+    },
+    "require-dev": {
+        "ext-sqlite3": "*",
+        "orchestra/testbench": "~4.0|~5.0|~6.0",
+        "phpunit/phpunit" : "8 - 9"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vanilo\\Stripe\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
