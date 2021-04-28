@@ -26,7 +26,7 @@ class StripePaymentRequest implements PaymentRequest
     {
         Stripe::setApiKey($this->secretKey);
         $paymentIntent = PaymentIntent::create([
-            'amount'   => $this->amount * 100,
+            'amount' => $this->amount * 100,
             'currency' => $this->currency,
             'metadata' => [
                 'payment_id' => $this->paymentId
@@ -36,7 +36,7 @@ class StripePaymentRequest implements PaymentRequest
         return View::make(
             $this->view,
             [
-                'publicKey'    => $this->publicKey,
+                'publicKey' => $this->publicKey,
                 'intentSecret' => $paymentIntent->client_secret
             ]
         )->render();

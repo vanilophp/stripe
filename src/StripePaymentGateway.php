@@ -27,9 +27,9 @@ class StripePaymentGateway implements PaymentGateway
 {
     use HasStripeInteraction;
 
-    private ?RequestFactory $requestFactory = null;
-
     public const DEFAULT_ID = 'stripe';
+
+    private ?RequestFactory $requestFactory = null;
 
     public static function getName(): string
     {
@@ -38,7 +38,6 @@ class StripePaymentGateway implements PaymentGateway
 
     public function createPaymentRequest(Payment $payment, Address $shippingAddress = null, array $options = []): PaymentRequest
     {
-
         if (null === $this->requestFactory) {
             $this->requestFactory = new RequestFactory(
                 $this->secretKey,
