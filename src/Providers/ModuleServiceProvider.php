@@ -34,7 +34,8 @@ class ModuleServiceProvider extends BaseModuleServiceProvider
         if ($this->config('bind', true)) {
             $this->app->bind(StripePaymentGateway::class, function ($app) {
                 return new StripePaymentGateway(
-                    $this->config('xxx') // @todo replace with real
+                    $this->config('secret_key'),
+                    $this->config('public_key')
                 );
             });
         }

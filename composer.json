@@ -16,13 +16,14 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/vanilophp/paypal"
+        "issues": "https://github.com/vanilophp/stripe"
     },
     "require": {
         "php": "^7.4|^8.0",
         "konekt/concord": "^1.5",
         "vanilo/payment": "^2.1",
-        "vanilo/contracts": "^2.1"
+        "vanilo/contracts": "^2.1",
+        "stripe/stripe-php": "^7.75"
     },
     "autoload": {
         "psr-4": {

@@ -10,5 +10,6 @@ return [
         'id' => StripePaymentGateway::DEFAULT_ID
     ],
     'bind' => true,
-    'xxx' => env('STRIPE_XXX'),
+    'secret_key' => env('STRIPE_SECRET_KEY'),
+    'public_key' => env('STRIPE_PUBLICK_KEY'),
 ];
