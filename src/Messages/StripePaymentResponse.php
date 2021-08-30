@@ -20,7 +20,7 @@ class StripePaymentResponse implements PaymentResponse
 
     public function wasSuccessful(): bool
     {
-        return $this->intent->status === PaymentIntent::STATUS_SUCCEEDED;
+        return PaymentIntent::STATUS_SUCCEEDED === $this->intent->status;
     }
 
     public function getMessage(): ?string
@@ -35,7 +35,7 @@ class StripePaymentResponse implements PaymentResponse
 
     public function getAmountPaid(): ?float
     {
-        return (float)$this->intent->amount_received;
+        return (float) $this->intent->amount_received;
     }
 
     public function getPaymentId(): string
@@ -43,10 +43,8 @@ class StripePaymentResponse implements PaymentResponse
         return $this->intent->metadata->payment_id;
     }
 
-
     public function getStatus(): PaymentStatus
     {
-
     }
 
     public function getNativeStatus(): Enum
