@@ -22,6 +22,7 @@ use Vanilo\Payment\Contracts\PaymentRequest;
 use Vanilo\Payment\Contracts\PaymentResponse;
 use Vanilo\Stripe\Concerns\HasStripeInteraction;
 use Vanilo\Stripe\Factories\RequestFactory;
+use Vanilo\Stripe\Factories\ResponseFactory;
 
 class StripePaymentGateway implements PaymentGateway
 {
@@ -30,6 +31,8 @@ class StripePaymentGateway implements PaymentGateway
     public const DEFAULT_ID = 'stripe';
 
     private ?RequestFactory $requestFactory = null;
+
+    private ?ResponseFactory $responseFactory = null;
 
     public static function getName(): string
     {
@@ -50,7 +53,14 @@ class StripePaymentGateway implements PaymentGateway
 
     public function processPaymentResponse(Request $request, array $options = []): PaymentResponse
     {
-        // @todo implement
+        if (null === $this->responseFactory) {
+            $this->responseFactory = new ResponseFactory(
+                $this->secretKey,
+                $this->publicKey
+            );
+        }
+
+        return $this->responseFactory->create($request, $options);
     }
 
     public function isOffline(): bool

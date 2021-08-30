@@ -20,6 +20,8 @@ class StripePaymentRequest implements PaymentRequest
 
     private float $amount;
 
+    private ?string $returnUrl = null;
+
     private string $view = 'stripe::_request';
 
     public function getHtmlSnippet(array $options = []): ?string
@@ -37,7 +39,8 @@ class StripePaymentRequest implements PaymentRequest
             $this->view,
             [
                 'publicKey' => $this->publicKey,
-                'intentSecret' => $paymentIntent->client_secret
+                'intentSecret' => $paymentIntent->client_secret,
+                'returnUrl' => $this->returnUrl
             ]
         )->render();
     }
@@ -85,6 +88,13 @@ class StripePaymentRequest implements PaymentRequest
     public function setView(string $view): self
     {
         $this->view = $view;
+
+        return $this;
+    }
+
+    public function setReturnUrl(string $returnUrl): self
+    {
+        $this->returnUrl = $returnUrl;
 
         return $this;
     }
