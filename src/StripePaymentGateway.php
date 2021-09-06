@@ -54,10 +54,7 @@ class StripePaymentGateway implements PaymentGateway
     public function processPaymentResponse(Request $request, array $options = []): PaymentResponse
     {
         if (null === $this->responseFactory) {
-            $this->responseFactory = new ResponseFactory(
-                $this->secretKey,
-                $this->publicKey
-            );
+            $this->responseFactory = new ResponseFactory();
         }
 
         return $this->responseFactory->create($request, $options);

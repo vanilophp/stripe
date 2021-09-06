@@ -7,9 +7,9 @@ use Vanilo\Stripe\StripePaymentGateway;
 return [
     'gateway' => [
         'register' => true,
-        'id' => StripePaymentGateway::DEFAULT_ID
+        'id' => StripePaymentGateway::DEFAULT_ID,
     ],
     'bind' => true,
-    'secret_key' => env('STRIPE_SECRET_KEY'),
-    'public_key' => env('STRIPE_PUBLICK_KEY'),
+    'secret_key' => env('STRIPE_SECRET_KEY', ''),
+    'public_key' => env('STRIPE_PUBLICK_KEY', ''),
 ];
