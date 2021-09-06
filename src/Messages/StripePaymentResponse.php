@@ -48,10 +48,10 @@ class StripePaymentResponse implements PaymentResponse
     public function getAmountPaid(): ?float
     {
         if ($this->getNativeStatus() == StripeEventType::CHARGE_REFUNDED()) {
-            return (float)($this->charge->amount - $this->charge->amount_refunded) / 100;
+            return (float) ($this->charge->amount - $this->charge->amount_refunded) / 100;
         }
 
-        return (float)$this->charge->amount_captured / 100;
+        return (float) $this->charge->amount_captured / 100;
     }
 
     public function getPaymentId(): string
