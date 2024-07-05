@@ -45,6 +45,21 @@ class StripePaymentRequest implements PaymentRequest
         )->render();
     }
 
+    public function createIntent()
+    {
+        return PaymentIntent::create([
+            'amount' => $this->amount * 100,
+            'currency' => $this->currency,
+            'metadata' => [
+                'payment_id' => $this->paymentId
+            ]
+        ]);
+    }
+
+    public function getPublicKey ()
+    {
+        return $this->publicKey;
+    }
     public function willRedirect(): bool
     {
         return true;
