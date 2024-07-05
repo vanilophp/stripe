@@ -59,6 +59,16 @@ class StripePaymentGateway implements PaymentGateway
 
         return $this->responseFactory->create($request, $options);
     }
+    
+    public static function svgIcon(): string
+    {
+        return self::$svg ??= file_get_contents(__DIR__ . '/resources/logo.svg');
+    }
+
+    public function transactionHandler(): ?TransactionHandler
+    {
+        return null;
+    }
 
     public function isOffline(): bool
     {
