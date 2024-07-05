@@ -1,5 +1,5 @@
 {
-    "name": "vanilo/stripe",
+    "name": "xujiongze/stripe",
     "description": "Stripe Payment Gateway Support for Vanilo (Laravel)",
     "type": "library",
     "minimum-stability": "dev",
