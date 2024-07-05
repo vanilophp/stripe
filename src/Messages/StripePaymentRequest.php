@@ -27,7 +27,7 @@ class StripePaymentRequest implements PaymentRequest
     public function getHtmlSnippet(array $options = []): ?string
     {
         Stripe::setApiKey($this->secretKey);
-        $paymentIntent = PaymentIntent::create([
+        $paymentIntent = $stripe->paymentIntents->create([
             'amount' => $this->amount * 100,
             'currency' => $this->currency,
             'metadata' => [
@@ -47,6 +47,7 @@ class StripePaymentRequest implements PaymentRequest
 
     public function createIntent()
     {
+        Stripe::setApiKey($this->secretKey);
         return PaymentIntent::create([
             'amount' => $this->amount * 100,
             'currency' => $this->currency,
