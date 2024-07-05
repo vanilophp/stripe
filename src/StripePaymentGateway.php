@@ -23,6 +23,7 @@ use Vanilo\Payment\Contracts\PaymentResponse;
 use Vanilo\Stripe\Concerns\HasStripeInteraction;
 use Vanilo\Stripe\Factories\RequestFactory;
 use Vanilo\Stripe\Factories\ResponseFactory;
+use Vanilo\Payment\Contracts\TransactionHandler;
 
 class StripePaymentGateway implements PaymentGateway
 {
