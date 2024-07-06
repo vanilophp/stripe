@@ -20,7 +20,7 @@ final class ResponseFactory
     public function create(Request $request, array $options,$secretKey): PaymentResponse
     {
         if($request->payment_intent){
-            Stripe::setApiKey($this->secretKey);
+            Stripe::setApiKey($secretKey);
             return new StripeReturnPaymentResponse(
                 PaymentIntent::retrieve($request->payment_intent, [])
             );
