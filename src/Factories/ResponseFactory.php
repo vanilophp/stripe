@@ -11,10 +11,10 @@ use Stripe\PaymentIntent;
 use Vanilo\Payment\Contracts\PaymentResponse;
 use Vanilo\Stripe\Messages\StripeReturnPaymentResponse;
 use Vanilo\Stripe\Messages\StripeWebhookPaymentResponse;
+use Vanilo\Stripe\Concerns\HasStripeConfiguration;
 
 final class ResponseFactory
 {
-    
     use HasStripeInteraction;
 
     public function create(Request $request, array $options,$secretKey): PaymentResponse
