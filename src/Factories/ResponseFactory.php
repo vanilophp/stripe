@@ -9,7 +9,8 @@ use Stripe\Event;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Vanilo\Payment\Contracts\PaymentResponse;
-use Vanilo\Stripe\Messages\StripePaymentResponse;
+use Vanilo\Stripe\Messages\StripeReturnPaymentResponse;
+use Vanilo\Stripe\Messages\StripeWebhookPaymentResponse;
 
 final class ResponseFactory
 {
