@@ -58,7 +58,7 @@ class StripePaymentGateway implements PaymentGateway
             $this->responseFactory = new ResponseFactory();
         }
 
-        return $this->responseFactory->create($request, $options);
+        return $this->responseFactory->create($request, $options,$this->secretKey);
     }
     
     public static function svgIcon(): string

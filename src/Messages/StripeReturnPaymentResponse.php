@@ -12,7 +12,7 @@ use Vanilo\Payment\Contracts\PaymentStatus;
 use Vanilo\Payment\Models\PaymentStatusProxy;
 use Vanilo\Stripe\Models\StripeEventType;
 
-class StripePaymentResponse implements PaymentResponse
+class StripeReturnPaymentResponse implements PaymentResponse
 {
     protected PaymentIntent $intent;
 
