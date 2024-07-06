@@ -45,6 +45,22 @@ class StripePaymentRequest implements PaymentRequest
         )->render();
     }
 
+    public function createIntent()
+    {
+        Stripe::setApiKey($this->secretKey);
+        return PaymentIntent::create([
+            'amount' => $this->amount * 100,
+            'currency' => $this->currency,
+            'metadata' => [
+                'payment_id' => $this->paymentId
+            ]
+        ]);
+    }
+
+    public function getPublicKey ()
+    {
+        return $this->publicKey;
+    }
     public function willRedirect(): bool
     {
         return true;
@@ -83,6 +99,11 @@ class StripePaymentRequest implements PaymentRequest
         $this->amount = $amount;
 
         return $this;
+    }
+
+    public function getRemoteId(): ?string
+    {
+        return null;
     }
 
     public function setView(string $view): self

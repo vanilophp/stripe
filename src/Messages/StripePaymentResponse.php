@@ -45,6 +45,11 @@ class StripePaymentResponse implements PaymentResponse
         return $this->charge->id;
     }
 
+    public function getTransactionAmount(): float
+    {
+        return $this->getAmountPaid() ?? 0;
+    }
+    
     public function getAmountPaid(): ?float
     {
         if ($this->getNativeStatus()->isChargeRefunded()) {
