@@ -50,7 +50,7 @@ class StripeReturnPaymentResponse implements PaymentResponse
 
     public function getPaymentId(): string
     {
-        return $this->metadata->payment_id;
+        return $this->intent->metadata->payment_id;
     }
 
     public function getStatus(): PaymentStatus
