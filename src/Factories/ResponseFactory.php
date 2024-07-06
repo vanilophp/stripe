@@ -15,7 +15,7 @@ use Vanilo\Stripe\Concerns\HasStripeConfiguration;
 
 final class ResponseFactory
 {
-    use HasStripeInteraction;
+    use HasStripeConfiguration;
 
     public function create(Request $request, array $options,$secretKey): PaymentResponse
     {
