@@ -61,7 +61,7 @@ class StripeWebhookPaymentResponse implements PaymentResponse
 
     public function getPaymentId(): string
     {
-        return $this->charge->metadata->payment_id;
+        return $this->charge->metadata->payment_id ?? -1;
     }
 
     public function getStatus(): PaymentStatus
