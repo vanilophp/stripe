@@ -19,10 +19,11 @@
         "issues": "https://github.com/vanilophp/stripe"
     },
     "require": {
-        "php": "^7.4|^8.0",
-        "konekt/concord": "^1.5",
-        "vanilo/payment": "^2.1",
-        "vanilo/contracts": "^2.1",
+        "php": "^8.2",
+        "konekt/concord": "^1.13",
+        "laravel/framework": "^10.0|^11.0",
+        "vanilo/payment": "^4.0",
+        "vanilo/contracts": "^4.0",
         "stripe/stripe-php": "^7.75"
     },
     "autoload": {

@@ -23,6 +23,7 @@ use Vanilo\Payment\Contracts\PaymentResponse;
 use Vanilo\Stripe\Concerns\HasStripeInteraction;
 use Vanilo\Stripe\Factories\RequestFactory;
 use Vanilo\Stripe\Factories\ResponseFactory;
+use Vanilo\Payment\Contracts\TransactionHandler;
 
 class StripePaymentGateway implements PaymentGateway
 {
@@ -57,7 +58,17 @@ class StripePaymentGateway implements PaymentGateway
             $this->responseFactory = new ResponseFactory();
         }
 
-        return $this->responseFactory->create($request, $options);
+        return $this->responseFactory->create($request, $options,$this->secretKey);
+    }
+    
+    public static function svgIcon(): string
+    {
+        return self::$svg ??= file_get_contents(__DIR__ . '/resources/logo.svg');
+    }
+
+    public function transactionHandler(): ?TransactionHandler
+    {
+        return null;
     }
 
     public function isOffline(): bool
