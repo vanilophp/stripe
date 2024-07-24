@@ -8,7 +8,7 @@
 
 This library enables [Stripe](https://stripe.com) for [Vanilo Payments](https://vanilo.io/docs/master/payments).
 
-Being a [Concord Module](https://konekt.dev/concord/1.9/modules) it is intended to be used by Laravel Applications.
+Being a [Concord Module](https://konekt.dev/concord/1.x/modules) it is intended to be used by Laravel Applications.
 
 ## Documentation
 
