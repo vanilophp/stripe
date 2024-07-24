@@ -31,6 +31,8 @@ class StripePaymentGateway implements PaymentGateway
 
     public const DEFAULT_ID = 'stripe';
 
+    private static ?string $svg = null;
+
     private ?RequestFactory $requestFactory = null;
 
     private ?ResponseFactory $responseFactory = null;

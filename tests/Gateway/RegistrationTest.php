@@ -26,4 +26,10 @@ class RegistrationTest extends TestCase
         $this->assertInstanceOf(PaymentGateway::class, $stripePayGateway);
         $this->assertInstanceOf(StripePaymentGateway::class, $stripePayGateway);
     }
+
+    /** @test */
+    public function the_gateway_has_a_logo()
+    {
+        $this->assertNotEmpty(StripePaymentGateway::svgIcon());
+    }
 }
