@@ -24,5 +24,4 @@ class StripeEventType extends Enum
     public const INTENT_PROCESSING = 'processing';
     public const INTENT_SUCCEEDED = 'succeeded';
     public const INTENT_CANCELED = 'canceled';
-
 }

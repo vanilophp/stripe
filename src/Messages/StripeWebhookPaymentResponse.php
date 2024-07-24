@@ -49,7 +49,7 @@ class StripeWebhookPaymentResponse implements PaymentResponse
     {
         return $this->getAmountPaid() ?? 0;
     }
-    
+
     public function getAmountPaid(): ?float
     {
         if ($this->getNativeStatus()->isChargeRefunded()) {

@@ -6,7 +6,6 @@ namespace Vanilo\Stripe\Messages;
 
 use Konekt\Enum\Enum;
 use Stripe\PaymentIntent;
-use Stripe\Event;
 use Vanilo\Payment\Contracts\PaymentResponse;
 use Vanilo\Payment\Contracts\PaymentStatus;
 use Vanilo\Payment\Models\PaymentStatusProxy;
@@ -42,7 +41,7 @@ class StripeReturnPaymentResponse implements PaymentResponse
     {
         return $this->getAmountPaid() ?? 0;
     }
-    
+
     public function getAmountPaid(): ?float
     {
         return (float) $this->intent->amount / 100;
