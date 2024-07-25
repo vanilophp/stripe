@@ -72,6 +72,6 @@ class StripeReturnPaymentResponse implements PaymentResponse
 
     public function getNativeStatus(): Enum
     {
-        return StripeEventType::create($this->eventType);
+        return StripeEventType::create($this->intent->status);
     }
 }

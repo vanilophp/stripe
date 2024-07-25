@@ -365,7 +365,20 @@
 
         // Shows a success message when the payment is complete
         var orderComplete = function (paymentIntentId) {
-            axios.post(@json($returnUrl), {paymentIntentId})
+            const returnUrl = @json($returnUrl)
+
+            if (returnUrl) {
+                const options = {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json;charset=UTF-8",
+                    },
+                    body: JSON.stringify({"payment_intent": paymentIntentId})
+                };
+
+                fetch(returnUrl, options)
+            }
 
             document.querySelector("#payment-form .result-message").classList.remove("hidden");
             document.querySelector("#payment-form button").disabled = true;

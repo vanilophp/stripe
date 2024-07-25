@@ -15,13 +15,11 @@ use Vanilo\Stripe\Messages\StripeWebhookPaymentResponse;
 
 final class ResponseFactory
 {
-    use HasStripeConfiguration;
-
-    public function create(Request $request, array $options, $secretKey): PaymentResponse
+    public function create(Request $request, array $options, string $secretKey): PaymentResponse
     {
         if ($request->payment_intent) {
-            $this->secretKey = $secretKey;
-            Stripe::setApiKey($this->secretKey);
+            Stripe::setApiKey($secretKey);
+
             return new StripeReturnPaymentResponse(
                 PaymentIntent::retrieve($request->payment_intent, [])
             );

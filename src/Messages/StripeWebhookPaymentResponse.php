@@ -61,7 +61,7 @@ class StripeWebhookPaymentResponse implements PaymentResponse
 
     public function getPaymentId(): string
     {
-        return $this->charge->metadata->payment_id ?? "-1";
+        return $this->charge->metadata->payment_id;
     }
 
     public function getStatus(): PaymentStatus
@@ -90,6 +90,6 @@ class StripeWebhookPaymentResponse implements PaymentResponse
 
     public function getNativeStatus(): Enum
     {
-        return StripeEventType::create($this->eventType);
+        return StripeEventType::create($this->charge->status);
     }
 }
