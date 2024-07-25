@@ -9,7 +9,6 @@ use Stripe\Event;
 use Stripe\PaymentIntent;
 use Stripe\Stripe;
 use Vanilo\Payment\Contracts\PaymentResponse;
-use Vanilo\Stripe\Concerns\HasStripeConfiguration;
 use Vanilo\Stripe\Messages\StripeReturnPaymentResponse;
 use Vanilo\Stripe\Messages\StripeWebhookPaymentResponse;
 
