@@ -6,7 +6,7 @@
 [![Packagist downloads](https://img.shields.io/packagist/dt/vanilo/stripe.svg?style=flat-square)](https://packagist.org/packages/vanilo/stripe)
 [![MIT Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 
-This library enables [Stripe](https://stripe.com) for [Vanilo Payments](https://vanilo.io/docs/master/payments).
+This library enables [Stripe](https://stripe.com) for [Vanilo Payments](https://vanilo.io/docs/4.x/payments).
 
 Being a [Concord Module](https://konekt.dev/concord/1.x/modules) it is intended to be used by Laravel Applications.
 

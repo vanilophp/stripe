@@ -2,6 +2,9 @@
 
 ## 2.x
 
+### 2.0.0
+#### 2024-07-26
+
 - Added Vanilo 4 Support
 - Changed PHP requirements to PHP 8.2 or PHP 8.3
 - Changed Laravel requirements to 10.43+ or 11.0+
