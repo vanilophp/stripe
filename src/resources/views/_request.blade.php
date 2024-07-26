@@ -1,28 +1,25 @@
-<form id="payment-form">
-    <div id="card-element"></div>
-    <button id="submit">
-        <div class="spinner hidden" id="spinner"></div>
-        <span id="button-text">Pay now</span>
+<form id="stripe-payment-form">
+    <div id="stripe-card-element"></div>
+    <button id="stripe-form-submit">
+        <div class="spinner hidden" id="stripe-spinner"></div>
+        <span id="stripe-button-text">{{ __('Pay now') }}</span>
     </button>
-    <p id="card-error" role="alert"></p>
-    <p class="result-message hidden">
-        Payment succeeded, see the result in your
-        <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
-    </p>
+    <p id="stripe-card-error" role="alert"></p>
+    <p class="result-message hidden">{{ __('Your payment was successful') }}</p>
 </form>
 
 <style>
-    #payment-form {
+    #stripe-payment-form {
         width: 30vw;
         min-width: 500px;
         align-self: center;
-        box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
-        0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
+        box-shadow: 0 0 0 0.5px rgba(50, 50, 93, 0.1),
+        0 2px 5px 0 rgba(50, 50, 93, 0.1), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07);
         border-radius: 7px;
         padding: 40px;
     }
 
-    #payment-form input {
+    #stripe-payment-form input {
         border-radius: 6px;
         margin-bottom: 6px;
         padding: 12px;
@@ -33,22 +30,22 @@
         background: white;
     }
 
-    #payment-form .result-message {
+    #stripe-payment-form .result-message {
         line-height: 22px;
         font-size: 16px;
     }
 
-    #payment-form .result-message a {
+    #stripe-payment-form .result-message a {
         color: rgb(89, 111, 214);
         font-weight: 600;
         text-decoration: none;
     }
 
-    #payment-form .hidden {
+    #stripe-payment-form .hidden {
         display: none;
     }
 
-    #payment-form #card-error {
+    #stripe-payment-form #stripe-card-error {
         color: rgb(105, 115, 134);
         text-align: left;
         font-size: 13px;
@@ -56,7 +53,7 @@
         margin-top: 12px;
     }
 
-    #payment-form #card-element {
+    #stripe-payment-form #stripe-card-element {
         border-radius: 4px 4px 0 0;
         padding: 12px;
         border: 1px solid rgba(50, 50, 93, 0.1);
@@ -65,11 +62,11 @@
         background: white;
     }
 
-    #payment-form #payment-request-button {
+    #stripe-payment-form #payment-request-button {
         margin-bottom: 32px;
     }
 
-    #payment-form button {
+    #stripe-payment-form button {
         background: #5469d4;
         color: #ffffff;
         font-family: Arial, sans-serif;
@@ -81,31 +78,31 @@
         cursor: pointer;
         display: block;
         transition: all 0.2s ease;
-        box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+        box-shadow: 0 4px 5.5px 0 rgba(0, 0, 0, 0.07);
         width: 100%;
     }
 
-    #payment-form button:hover {
+    #stripe-payment-form button:hover {
         filter: contrast(115%);
     }
 
-    #payment-form button:disabled {
+    #stripe-payment-form button:disabled {
         opacity: 0.5;
         cursor: default;
     }
 
     /* spinner/processing state, errors */
-    #payment-form .spinner,
-    #payment-form .spinner:before,
-    #payment-form .spinner:after {
+    #stripe-payment-form .spinner,
+    #stripe-payment-form .spinner:before,
+    #stripe-payment-form .spinner:after {
         border-radius: 50%;
     }
 
-    #payment-form .spinner {
+    #stripe-payment-form .spinner {
         color: #ffffff;
         font-size: 22px;
         text-indent: -99999px;
-        margin: 0px auto;
+        margin: 0 auto;
         position: relative;
         width: 20px;
         height: 20px;
@@ -114,13 +111,13 @@
         transform: translateZ(0);
     }
 
-    #payment-form .spinner:before,
-    #payment-form .spinner:after {
+    #stripe-payment-form .spinner:before,
+    #stripe-payment-form .spinner:after {
         position: absolute;
         content: "";
     }
 
-    #payment-form .spinner:before {
+    #stripe-payment-form .spinner:before {
         width: 10.4px;
         height: 20.4px;
         background: #5469d4;
@@ -133,42 +130,38 @@
         animation: loading 2s infinite ease 1.5s;
     }
 
-    #payment-form .spinner:after {
+    #stripe-payment-form .spinner:after {
         width: 10.4px;
         height: 10.2px;
         background: #5469d4;
         border-radius: 0 10.2px 10.2px 0;
         top: -0.1px;
         left: 10.2px;
-        -webkit-transform-origin: 0px 10.2px;
-        transform-origin: 0px 10.2px;
+        -webkit-transform-origin: 0 10.2px;
+        transform-origin: 0 10.2px;
         -webkit-animation: loading 2s infinite ease;
         animation: loading 2s infinite ease;
     }
 
     @-webkit-keyframes loading {
         0% {
-            -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
         }
         100% {
-            -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
         }
     }
 
     @keyframes loading {
         0% {
-            -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
         }
         100% {
-            -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
         }
     }
     @media only screen and (max-width: 600px) {
-        #payment-form form {
+        #stripe-payment-form form {
             width: 80vw;
         }
     }
@@ -200,14 +193,14 @@
     var card = elements.create("card", {style: style});
 
     // Stripe injects an iframe into the DOM
-    card.mount("#payment-form #card-element");
+    card.mount("#stripe-payment-form #stripe-card-element");
     card.on("change", function (event) {
         // Disable the Pay button if there are no card details in the Element
-        document.querySelector("#payment-form button").disabled = event.empty;
-        document.querySelector("#payment-form #card-error").textContent = event.error ? event.error.message : "";
+        document.querySelector("#stripe-payment-form button").disabled = event.empty;
+        document.querySelector("#stripe-payment-form #stripe-card-error").textContent = event.error ? event.error.message : "";
     });
 
-    var form = document.getElementById("payment-form");
+    var form = document.getElementById("stripe-payment-form");
 
     form.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -240,8 +233,7 @@
 
     // Shows a success message when the payment is complete
     var orderComplete = function (paymentIntentId) {
-        const returnUrl =
-        @json($returnUrl)
+        const returnUrl = @json($returnUrl)
 
         if (returnUrl) {
             const options = {
@@ -256,15 +248,15 @@
             fetch(returnUrl, options)
         }
 
-        document.querySelector("#payment-form .result-message").classList.remove("hidden");
-        document.querySelector("#payment-form button").disabled = true;
+        document.querySelector("#stripe-payment-form .result-message").classList.remove("hidden");
+        document.querySelector("#stripe-payment-form button").disabled = true;
         loading(false);
     }
 
     // Show the customer the error from Stripe if their card fails to charge
     var showError = function (errorMsgText) {
         loading(false);
-        var errorMsg = document.querySelector("#payment-form #card-error");
+        var errorMsg = document.querySelector("#stripe-payment-form #stripe-card-error");
         errorMsg.textContent = errorMsgText;
         setTimeout(function () {
             errorMsg.textContent = "";
@@ -275,13 +267,13 @@
     var loading = function (isLoading) {
         if (isLoading) {
             // Disable the button and show a spinner
-            document.querySelector("#payment-form button").disabled = true;
-            document.querySelector("#payment-form #spinner").classList.remove("hidden");
-            document.querySelector("#payment-form #button-text").classList.add("hidden");
+            document.querySelector("#stripe-payment-form button").disabled = true;
+            document.querySelector("#stripe-payment-form #stripe-spinner").classList.remove("hidden");
+            document.querySelector("#stripe-payment-form #stripe-button-text").classList.add("hidden");
         } else {
-            document.querySelector("#payment-form button").disabled = false;
-            document.querySelector("#payment-form #spinner").classList.add("hidden");
-            document.querySelector("#payment-form #button-text").classList.remove("hidden");
+            document.querySelector("#stripe-payment-form button").disabled = false;
+            document.querySelector("#stripe-payment-form #stripe-spinner").classList.add("hidden");
+            document.querySelector("#stripe-payment-form #stripe-button-text").classList.remove("hidden");
         }
     };
 </script>
