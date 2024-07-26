@@ -2,8 +2,8 @@
 
 ## 2.x
 
-### Unreleased
-#### 2024-XX-YY
+### 2.1.0
+#### 2024-07-26
 
 - Added the `return_url` configuration (passing it in the `$options` array is no longer needed)
 - Fixed the SVG logo viewBox markup
