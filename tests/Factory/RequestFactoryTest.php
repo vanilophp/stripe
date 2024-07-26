@@ -17,7 +17,7 @@ class RequestFactoryTest extends TestCase
     /** @test */
     public function it_creates_a_request_object()
     {
-        $factory = new RequestFactory('secret', 'pkey');
+        $factory = new RequestFactory('secret', 'pkey', url('/'));
         $method = PaymentMethod::create([
             'gateway' => StripePaymentGateway::getName(),
             'name' => 'Stripe',

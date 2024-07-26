@@ -11,5 +11,6 @@ return [
     ],
     'bind' => true,
     'secret_key' => env('STRIPE_SECRET_KEY', ''),
-    'public_key' => env('STRIPE_PUBLICK_KEY', ''),
+    'public_key' => env('STRIPE_PUBLIC_KEY', ''),
+    'return_url' => env('STRIPE_RETURN_URL', ''),
 ];

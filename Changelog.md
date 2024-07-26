@@ -2,6 +2,11 @@
 
 ## 2.x
 
+### Unreleased
+#### 2024-XX-YY
+
+- Added the `return_url` configuration (passing it in the `$options` array is no longer needed)
+
 ### 2.0.0
 #### 2024-07-26
 

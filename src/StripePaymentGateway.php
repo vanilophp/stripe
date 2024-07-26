@@ -47,7 +47,8 @@ class StripePaymentGateway implements PaymentGateway
         if (null === $this->requestFactory) {
             $this->requestFactory = new RequestFactory(
                 $this->secretKey,
-                $this->publicKey
+                $this->publicKey,
+                $this->returnUrl,
             );
         }
 

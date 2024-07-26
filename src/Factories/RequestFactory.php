@@ -21,11 +21,8 @@ final class RequestFactory
             ->setPublicKey($this->publicKey)
             ->setPaymentId($payment->getPaymentId())
             ->setCurrency($payment->getCurrency())
-            ->setAmount($payment->getAmount());
-
-        if (isset($options['return_url'])) {
-            $result->setReturnUrl($options['return_url']);
-        }
+            ->setAmount($payment->getAmount())
+            ->setReturnUrl($this->returnUrl);
 
         if (isset($options['view'])) {
             $result->setView($options['view']);
