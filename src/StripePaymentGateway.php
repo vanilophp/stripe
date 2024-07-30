@@ -49,6 +49,7 @@ class StripePaymentGateway implements PaymentGateway
                 $this->secretKey,
                 $this->publicKey,
                 $this->returnUrl,
+                $this->createCustomer
             );
         }
 
