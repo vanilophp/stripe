@@ -37,7 +37,7 @@ class ModuleServiceProvider extends BaseModuleServiceProvider
                     $this->config('secret_key'),
                     $this->config('public_key'),
                     $this->config('return_url'),
-                    (bool)$this->config('create_customer'),
+                    (bool) $this->config('create_customer'),
                 );
             });
         }
