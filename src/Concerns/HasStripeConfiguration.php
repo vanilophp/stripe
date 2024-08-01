@@ -9,4 +9,6 @@ trait HasStripeConfiguration
     use HasStripeCredentials;
 
     private ?string $returnUrl = null;
+
+    private ?bool $createCustomer = false;
 }
