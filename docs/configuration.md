@@ -5,7 +5,45 @@
 The following `.env` parameters can be set in order to work with this package.
 
 ```dotenv
-STRIPE_XXX=
+STRIPE_SECRET_KEY="" # Mandatory
+STRIPE_PUBLIC_KEY="" # Mandatory
+STRIPE_RETURN_URL="" # Optional, leave this unset unless you really want to set a different return_url for stripe
+STRIPE_CREATE_CUSTOMER=0# Set to 1 or true if you want a Stripe customer assigned/created along with the payment intent
+```
+
+The return URL should be an endpoint in your final application that handles the requests upon payment state change.
+
+An example implementation:
+
+```php
+use Illuminate\Http\Request;
+use Vanilo\Payment\Models\Payment;
+use Vanilo\Payment\PaymentGateways;
+use Vanilo\Payment\Processing\PaymentResponseHandler;
+
+class StripeController
+{
+    public function return(Request $request)
+    {
+        $response = PaymentGateways::make('stripe')->processPaymentResponse($request);
+        $payment = Payment::findByPaymentId($response->getPaymentId());
+
+        if (null === $payment) {
+            abort(404);
+        }
+
+        try {
+            $handler = new PaymentResponseHandler($payment, $response);
+            $handler->writeResponseToHistory();
+            $handler->updatePayment();
+            $handler->fireEvents();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error at processing: ' . $e->getMessage()], 500);
+        }
+
+        return response()->json(['message' => 'Payment processed successfully']);
+    }
+}
 ```
 
 ## Registration with Payments Module
@@ -114,9 +152,10 @@ typically in the `AppServiceProvider::boot()` method:
 ```php
 $this->app->bind(StripePaymentGateway::class, function ($app) {
     return new StripePaymentGateway(
-        config('vanilo.stripe.xxx'),  // You can use any source
-        config('vanilo.stripe.yyy'),  // other than config()
-        config('vanilo.stripe.zzz')  // for passing args
+        config('vanilo.stripe.secret_key'),  // You can use any source
+        config('vanilo.stripe.public_key'),  // other than config()
+        config('vanilo.stripe.return_url'),  // for passing args
+        (bool) config(vanilo.stripe.'create_customer'),
     );
 });
 ```

@@ -20,7 +20,7 @@ final class RequestFactory
         $result
             ->setSecretKey($this->secretKey)
             ->setPublicKey($this->publicKey)
-            ->setDescription("Order number: {$payment->getPayable()->getPayableId()}")
+            ->setDescription("Order {$payment->getPayable()->getPayableId()}")
             ->setPaymentId($payment->getPaymentId())
             ->setCurrency($payment->getCurrency())
             ->setAmount($payment->getAmount())

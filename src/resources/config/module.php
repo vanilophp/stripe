@@ -13,4 +13,5 @@ return [
     'secret_key' => env('STRIPE_SECRET_KEY', ''),
     'public_key' => env('STRIPE_PUBLIC_KEY', ''),
     'return_url' => env('STRIPE_RETURN_URL', ''),
+    'create_customer' => env('STRIPE_CREATE_CUSTOMER', false),
 ];
