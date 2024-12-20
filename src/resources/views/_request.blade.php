@@ -1,176 +1,180 @@
+{{-- Success message container --}}
+<div id="stripe-success-message-container">
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 24 24">
+        <path d="M 20.292969 5.2929688 L 9 16.585938 L 4.7070312 12.292969 L 3.2929688 13.707031 L 9 19.414062 L 21.707031 6.7070312 L 20.292969 5.2929688 z" fill="#40d521"></path>
+    </svg>
+
+    <h2 class="result-message-title">{{ __('Payment successful') }}</h2>
+    <p class="result-message-description">{{ __('Thank you for your order!') }}</p>
+</div>
+
+{{-- Error message container --}}
+<div id="stripe-card-error-message-container">
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50">
+        <path d="M 9.15625 6.3125 L 6.3125 9.15625 L 22.15625 25 L 6.21875 40.96875 L 9.03125 43.78125 L 25 27.84375 L 40.9375 43.78125 L 43.78125 40.9375 L 27.84375 25 L 43.6875 9.15625 L 40.84375 6.3125 L 25 22.15625 Z" fill="#e80000"></path>
+    </svg>
+
+    <h2 class="result-message-title">{{ __('Payment error') }}</h2>
+    <p id="stripe-card-error" class="result-message-description"></p>
+</div>
+
+{{-- Payment form --}}
 <form id="stripe-payment-form">
+    <h2 class="stripe-payment-title">{{ __('Please complete your payment by entering the payment details') }}</h2>
+    <h3 class="stripe-card-title">{{ __('Debit or credit card') }}:</h3>
+
     <div id="stripe-card-element"></div>
-    <button id="stripe-form-submit">
+
+    <p id="stripe-validation-error" role="alert"></p>
+
+    <button id="stripe-form-submit" disabled>
         <div class="spinner hidden" id="stripe-spinner"></div>
         <span id="stripe-button-text">{{ __('Pay now') }}</span>
     </button>
-    <p id="stripe-card-error" role="alert"></p>
-    <p class="result-message hidden">{{ __('Your payment was successful') }}</p>
 </form>
 
 <style>
-    #stripe-payment-form {
-        width: 30vw;
-        min-width: 500px;
-        align-self: center;
-        box-shadow: 0 0 0 0.5px rgba(50, 50, 93, 0.1),
-        0 2px 5px 0 rgba(50, 50, 93, 0.1), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07);
-        border-radius: 7px;
-        padding: 40px;
-    }
-
-    #stripe-payment-form input {
-        border-radius: 6px;
-        margin-bottom: 6px;
-        padding: 12px;
-        border: 1px solid rgba(50, 50, 93, 0.1);
-        height: 44px;
-        font-size: 16px;
-        width: 100%;
+    #stripe-payment-form,
+    #stripe-success-message-container,
+    #stripe-card-error-message-container {
         background: white;
+        border-radius: .5rem;
+        box-shadow: 0 0 0 0.5px rgba(50, 50, 93, 0.1), 0 2px 5px 0 rgba(50, 50, 93, 0.1), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07);
+        margin: 2rem 1rem;
+        min-width: 250px;
+        max-width: 600px;
+        padding: 1rem;
     }
 
-    #stripe-payment-form .result-message {
-        line-height: 22px;
-        font-size: 16px;
+    @media screen and (min-width: 520px) {
+        #stripe-payment-form,
+        #stripe-success-message-container,
+        #stripe-card-error-message-container {
+            padding: 2.5rem;
+        }
     }
 
-    #stripe-payment-form .result-message a {
-        color: rgb(89, 111, 214);
-        font-weight: 600;
-        text-decoration: none;
+    #stripe-card-error-message-container svg,
+    #stripe-success-message-container svg {
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: .5rem;
     }
 
-    #stripe-payment-form .hidden {
-        display: none;
+    #stripe-success-message-container svg {
+        border: 3px solid #40d521;
     }
 
-    #stripe-payment-form #stripe-card-error {
-        color: rgb(105, 115, 134);
-        text-align: left;
-        font-size: 13px;
-        line-height: 17px;
-        margin-top: 12px;
+    #stripe-card-error-message-container svg {
+        border: 3px solid #e80000;
     }
 
-    #stripe-payment-form #stripe-card-element {
-        border-radius: 4px 4px 0 0;
-        padding: 12px;
-        border: 1px solid rgba(50, 50, 93, 0.1);
-        height: 44px;
-        width: 100%;
-        background: white;
+    .StripeElement {
+        border: 1px solid lightgray;
+        border-radius: .5rem;
+        padding: 1rem;
     }
 
-    #stripe-payment-form #payment-request-button {
-        margin-bottom: 32px;
+    .StripeElement--focus {
+        border: 1px solid gray;
+    }
+
+    .stripe-payment-title,
+    .result-message-title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .result-message-title {
+        margin-bottom: 1rem;
+    }
+
+    .result-message-description {
+        text-align: center;
+    }
+
+    .stripe-payment-title {
+        margin-bottom: 3rem;
+    }
+
+    .stripe-card-title {
+        font-weight: 500;
+        padding-bottom: .5rem;
+    }
+
+    #stripe-payment-form iframe {
+        outline: none;
+    }
+
+    #stripe-payment-form #stripe-validation-error {
+        color: #e80000;
+        font-size: 12px;
+        margin-bottom: 1.5rem;
+        margin-top: .2rem;
     }
 
     #stripe-payment-form button {
         background: #5469d4;
-        color: #ffffff;
-        font-family: Arial, sans-serif;
-        border-radius: 0 0 4px 4px;
         border: 0;
-        padding: 12px 16px;
-        font-size: 16px;
-        font-weight: 600;
+        border-radius: .5rem;
+        box-shadow: 0 4px 5.5px 0 rgba(0, 0, 0, 0.07);
+        color: #ffffff;
         cursor: pointer;
         display: block;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 1rem;
         transition: all 0.2s ease;
-        box-shadow: 0 4px 5.5px 0 rgba(0, 0, 0, 0.07);
         width: 100%;
     }
 
     #stripe-payment-form button:hover {
-        filter: contrast(115%);
+        opacity: .85;
     }
 
     #stripe-payment-form button:disabled {
-        opacity: 0.5;
-        cursor: default;
+        background: lightgray;
+        cursor: not-allowed;
+        opacity: 1;
     }
 
-    /* spinner/processing state, errors */
-    #stripe-payment-form .spinner,
-    #stripe-payment-form .spinner:before,
-    #stripe-payment-form .spinner:after {
-        border-radius: 50%;
-    }
-
-    #stripe-payment-form .spinner {
-        color: #ffffff;
-        font-size: 22px;
-        text-indent: -99999px;
-        margin: 0 auto;
-        position: relative;
+    .spinner {
+        display: inline-block;
         width: 20px;
         height: 20px;
-        box-shadow: inset 0 0 0 2px;
-        -ms-transform: translateZ(0);
-        transform: translateZ(0);
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 1s ease infinite;
+        margin: auto;
     }
 
-    #stripe-payment-form .spinner:before,
-    #stripe-payment-form .spinner:after {
-        position: absolute;
-        content: "";
+    .spinner.hidden {
+        display: none;
     }
 
-    #stripe-payment-form .spinner:before {
-        width: 10.4px;
-        height: 20.4px;
-        background: #5469d4;
-        border-radius: 20.4px 0 0 20.4px;
-        top: -0.2px;
-        left: -0.2px;
-        -webkit-transform-origin: 10.4px 10.2px;
-        transform-origin: 10.4px 10.2px;
-        -webkit-animation: loading 2s infinite ease 1.5s;
-        animation: loading 2s infinite ease 1.5s;
-    }
-
-    #stripe-payment-form .spinner:after {
-        width: 10.4px;
-        height: 10.2px;
-        background: #5469d4;
-        border-radius: 0 10.2px 10.2px 0;
-        top: -0.1px;
-        left: 10.2px;
-        -webkit-transform-origin: 0 10.2px;
-        transform-origin: 0 10.2px;
-        -webkit-animation: loading 2s infinite ease;
-        animation: loading 2s infinite ease;
-    }
-
-    @-webkit-keyframes loading {
+    @keyframes spin {
         0% {
             transform: rotate(0deg);
         }
         100% {
             transform: rotate(360deg);
-        }
-    }
-
-    @keyframes loading {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-    @media only screen and (max-width: 600px) {
-        #stripe-payment-form form {
-            width: 80vw;
         }
     }
 </style>
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+    let successPaymentContainer = document.querySelector("#stripe-success-message-container");
+    let errorPaymentContainer = document.querySelector("#stripe-card-error-message-container");
+    let paymentButton = document.querySelector("#stripe-form-submit");
+    let form = document.getElementById("stripe-payment-form");
+
     let stripe = Stripe(@json($publicKey));
-    var elements = stripe.elements();
+    let elements = stripe.elements();
 
     let style = {
         base: {
@@ -182,28 +186,39 @@
                 color: "#32325d"
             }
         },
-
         invalid: {
             fontFamily: 'Arial, sans-serif',
-            color: "#fa755a",
-            iconColor: "#fa755a"
+            color: "#e80000",
+            iconColor: "#e80000"
         }
     };
 
-    var card = elements.create("card", {style: style});
+    let card = elements.create("card", {style: style});
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Disable the pay button on page load
+        paymentButton.disabled = true;
+
+        // Hide the success container on page load
+        successPaymentContainer.style.display = "none";
+
+        // Hide the error container on page load
+        errorPaymentContainer.style.display = "none";
+    })
 
     // Stripe injects an iframe into the DOM
     card.mount("#stripe-payment-form #stripe-card-element");
+
     card.on("change", function (event) {
         // Disable the Pay button if there are no card details in the Element
-        document.querySelector("#stripe-payment-form button").disabled = event.empty;
-        document.querySelector("#stripe-payment-form #stripe-card-error").textContent = event.error ? event.error.message : "";
+        document.querySelector("#stripe-form-submit").disabled = event.empty;
+        document.querySelector("#stripe-payment-form #stripe-validation-error").textContent = event.error ? event.error.message : "";
     });
 
-    var form = document.getElementById("stripe-payment-form");
 
     form.addEventListener("submit", function (event) {
         event.preventDefault();
+
         // Complete payment when the submit button is clicked
         payWithCard(stripe, card);
     });
@@ -211,7 +226,7 @@
     // Calls stripe.confirmCardPayment
     // If the card requires authentication Stripe shows a pop-up modal to
     // prompt the user to enter authentication details without leaving your page.
-    var payWithCard = function (stripe, card) {
+    let payWithCard = function (stripe, card) {
         loading(true);
         stripe.confirmCardPayment(@json($intentSecret), {
             payment_method: {
@@ -221,7 +236,11 @@
             .then(function (result) {
                 if (result.error) {
                     // Show error to your customer
-                    showError(result.error.message);
+                    if (result.error.type === 'card_error') {
+                        showCardError(result.error.message)
+                    } else {
+                        showValidationError(result.error.message);
+                    }
                 } else {
                     orderComplete(result.paymentIntent.id);
                 }
@@ -232,8 +251,8 @@
     /* ------- UI helpers ------- */
 
     // Shows a success message when the payment is complete
-    var orderComplete = function (paymentIntentId) {
-        const returnUrl = @json($returnUrl)
+    let orderComplete = function (paymentIntentId) {
+        const returnUrl = @json($returnUrl ?? null);
 
         if (returnUrl) {
             const options = {
@@ -248,23 +267,39 @@
             fetch(returnUrl, options)
         }
 
-        document.querySelector("#stripe-payment-form .result-message").classList.remove("hidden");
-        document.querySelector("#stripe-payment-form button").disabled = true;
-        loading(false);
+        form.style.display = "none";
+        successPaymentContainer.style.display = "block";
     }
 
-    // Show the customer the error from Stripe if their card fails to charge
-    var showError = function (errorMsgText) {
+    // Show the validation errors to the customer
+    let showValidationError = function (errorMsgText) {
         loading(false);
-        var errorMsg = document.querySelector("#stripe-payment-form #stripe-card-error");
+
+        let errorMsg = document.querySelector("#stripe-payment-form #stripe-validation-error");
         errorMsg.textContent = errorMsgText;
+
         setTimeout(function () {
             errorMsg.textContent = "";
         }, 4000);
     };
 
+    // Show the validation errors to the customer
+    let showCardError = function (errorMsgText) {
+        loading(false);
+        errorPaymentContainer.style.display = "block"
+        form.style.display = "none"
+
+        let errorMsg = document.querySelector("#stripe-card-error");
+        errorMsg.textContent = errorMsgText;
+
+        setTimeout(function () {
+            errorPaymentContainer.style.display = "none"
+            form.style.display = "block"
+        }, 4000);
+    };
+
     // Show a spinner on payment submission
-    var loading = function (isLoading) {
+    let loading = function (isLoading) {
         if (isLoading) {
             // Disable the button and show a spinner
             document.querySelector("#stripe-payment-form button").disabled = true;
