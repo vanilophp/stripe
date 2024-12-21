@@ -8,6 +8,7 @@
 - Added PHP 8.4 support
 - Added the create customer option
   - Added the `STRIPE_CREATE_CUSTOMER` env var (defaults to false) which enables Stripe customer creation
+- Improved the default HTML snippet for a better UX for shoppers 
 
 ### 2.1.0
 #### 2024-07-26
