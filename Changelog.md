@@ -2,8 +2,8 @@
 
 ## 2.x
 
-### Unreleased
-#### 2024-XX-YY
+### 2.2.0
+#### 2024-12-21
 
 - Added PHP 8.4 support
 - Added the create customer option
