@@ -42,7 +42,7 @@ class StripePaymentGateway implements PaymentGateway
         return 'Stripe';
     }
 
-    public function createPaymentRequest(Payment $payment, Address $shippingAddress = null, array $options = []): PaymentRequest
+    public function createPaymentRequest(Payment $payment, ?Address $shippingAddress = null, array $options = []): PaymentRequest
     {
         if (null === $this->requestFactory) {
             $this->requestFactory = new RequestFactory(
