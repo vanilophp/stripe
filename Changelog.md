@@ -9,6 +9,7 @@
 - Dropped PHP 8.2 support
 - Added PHP 8.5 support
 - Added Laravel 12 support
+- Changed the minimum Laravel requirements to 10.48.3, 11.44.1 and 12.2, respectively
 
 ## 2.x
 
