@@ -7,8 +7,8 @@
 
 - Upgrade to Vanilo 5
 - Dropped PHP 8.2 support
+- Added PHP 8.5 support
 - Added Laravel 12 support
-
 
 ## 2.x
 
