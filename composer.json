@@ -21,7 +21,7 @@
     "require": {
         "php": "^8.3",
         "konekt/concord": "^1.15",
-        "laravel/framework": "^10.48.23|^11.44.1|^12.2",
+        "laravel/framework": "^10.48.23|^11.46.2|^12.50|^13.0",
         "vanilo/payment": "^5.0",
         "vanilo/contracts": "^5.0",
         "stripe/stripe-php": "^7.128"
