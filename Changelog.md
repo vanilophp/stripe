@@ -2,8 +2,8 @@
 
 ## 3.x
 
-### Unreleased
-#### 2026-XX-YY
+### 3.1.0
+#### 2026-05-07
 
 - Added Laravel 13 support
 - Changed the minimum Laravel requirements to 10.48.23, 11.46.2 and 12.50, respectively
