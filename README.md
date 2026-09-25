@@ -12,4 +12,4 @@ Being a [Concord Module](https://konekt.dev/concord/1.x/modules) it is intended 
 
 ## Documentation
 
-Refer to the markdown files in the [docs](docs/) folder.
+Refer to the Markdown files in the [docs](docs/) folder.
